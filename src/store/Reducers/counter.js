@@ -1,8 +1,7 @@
-import * as actionTypes from './actions';
+import * as actionTypes from '../actions';
 
 const initialState = {
-    counter: 0,
-    results: []
+    counter: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -26,20 +25,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 counter: state.counter - action.value
-            }
-        case actionTypes.STORE_RESULT:
-            return {
-                ...state,
-                results: state.results.concat({ id: new Date(), value: state.counter }) //concat returns new array, push doesn't
-            }
-        case actionTypes.DELETE_RESULT:
-            // const id = 2;
-            // const newResults = [...state.results]; //not a deep copy but ok for element removal
-            // newResults.splice(id, 1);
-            const updatedResults = state.results.filter(result => result.id !== action.resultId); //returns new array
-            return {
-                ...state,
-                results: updatedResults
             }
         default:
             return state;
